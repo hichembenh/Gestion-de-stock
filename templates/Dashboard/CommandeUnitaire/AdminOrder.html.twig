@@ -1,0 +1,182 @@
+{% extends 'Dashboard/base.html.twig' %}
+{% block title %} Fiche Commande {% endblock %}
+{% block body %}
+    <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        {% include'./Dashboard/navbar.html.twig' %}
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>DataTables</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">DataTables</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            {% for message in app.flashes('success') %}
+                                <div class="alert alert-success">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Ajouter une Commande</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <a class="js-delete">
+                                    {{ form_start(form) }}
+                                    {{ form_rest(form) }}
+                                    <button class="btn btn-success">Ajouter</button>
+                                    {{ form_end(form) }}
+                                    </a>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Liste des commande</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr bgcolor="gray">
+                                            <th>Modifier</th>
+                                            <th>Ref</th>
+                                            <th>Nom du client</th>
+                                            <th>Adresse du client</th>
+                                            <th>Montant de la commande</th>
+                                            <th>Numero telephone du client</th>
+                                            <th>Date de creation</th>
+                                            <th>Etat</th>
+                                            <th>Numero du colis</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for commande in commandes %}
+                                            <tr>
+                                                <th>
+                                                    <a href="{{path("Admin.CommandeUnitarie.edit",{id: commande.id})}}" class="btn btn-secondary">Editer</a>
+                                                    <form method="post" action="{{ path('Admin.CommandeUnitaire.delete',{id: commande.id})}}" class="js-delete" style="display: inline-block" onsubmit="return confirm('Sur??')">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token('delete'~ commande.id) }}">
+                                                        <button class="btn btn-danger">Supprimer</button>
+                                                    </form>
+                                                </th>
+                                                <th {% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
+                                                    {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
+                                                    {% if commande.etat==3 %} bgcolor ="green"{% endif %}
+                                                    {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
+                                                    {{ commande.ref }}</th>
+                                                <th {% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
+                                                        {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
+                                                        {% if commande.etat==3 %} bgcolor ="green"{% endif %}
+                                                        {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
+                                                    {{ commande.nomClient }}</th>
+                                                <th {% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
+                                                        {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
+                                                        {% if commande.etat==3 %} bgcolor ="green"{% endif %}
+                                                        {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
+                                                    {{ commande.adresse }}</th>
+                                                <th{% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
+                                                        {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
+                                                        {% if commande.etat==3 %} bgcolor ="green"{% endif %}
+                                                        {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
+                                                    {{ commande.prix }}</th>
+                                                <th{% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
+                                                        {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
+                                                        {% if commande.etat==3 %} bgcolor ="green"{% endif %}
+                                                        {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
+                                                    {{ commande.numTel }}</th>
+                                                <th{% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
+                                                        {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
+                                                        {% if commande.etat==3 %} bgcolor ="green"{% endif %}
+                                                        {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
+                                                    {{ commande.dateCreation |date("d/m/Y h:m") }}</th>
+                                                <th {% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
+                                                        {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
+                                                        {% if commande.etat==3 %} bgcolor ="green"{% endif %}
+                                                        {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
+                                                    {{ commande.etat }}</th>
+                                                <th{% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
+                                                        {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
+                                                        {% if commande.etat==3 %} bgcolor ="green"{% endif %}
+                                                        {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
+                                                    {{ commande.numColis }}</th>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Modifier</th>
+                                            <th>Ref</th>
+                                            <th>Nom du client</th>
+                                            <th>Adresse du client</th>
+                                            <th>Montant de la commande</th>
+                                            <th>Numero telephone du client</th>
+                                            <th>Date de creation</th>
+                                            <th>Etat</th>
+                                            <th>Numero du colis</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        {% include 'Dashboard/footer.html.twig' %}
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    </body>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+        function onClickDelet(event){
+            event.preventDefault();
+            const url = this.href;
+            axios.get(url)
+        }
+
+        document.querySelectorAll('form.js-delete').forEach(function (link){
+            link.addEventListener('click', onClickDelet);
+        })
+    </script>
+{% endblock %}
