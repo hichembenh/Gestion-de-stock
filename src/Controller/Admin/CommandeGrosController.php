@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\CommandeUnitaire;
-use App\Form\CommandeUnitaireType;
-use App\Repository\CommandeUnitaireRepository;
+use App\Entity\CommandeGros;
+use App\Form\CommandeGrosType;
+use App\Repository\CommandeGrosRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -12,10 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CommandeUnitaireController extends AbstractController
+class CommandeGrosController extends AbstractController
 {
     /***
-     * @var CommandeUnitaireRepository
+     * @var CommandeGrosRepository
      */
     private $commande;
     /**
@@ -23,7 +23,7 @@ class CommandeUnitaireController extends AbstractController
      */
     private $manager;
 
-    public function __construct(CommandeUnitaireRepository $commande,EntityManagerInterface $manager)
+    public function __construct(CommandeGrosRepository $commande,EntityManagerInterface $manager)
     {
         $this->commande=$commande;
         $this->manager = $manager;
@@ -31,12 +31,12 @@ class CommandeUnitaireController extends AbstractController
 
     /**
      * @return Response
-     * @Route ("/Commandes",name="Admin.CommandeUnitaire.index")
+     * @Route ("/CommandesGros",name="Admin.CommandeGros.index")
      */
     public function index(Request $request):Response
     {
-        $commande = new CommandeUnitaire();
-        $form =$this->createForm(CommandeUnitaireType::class,$commande);
+        $commande = new CommandeGros();
+        $form =$this->createForm(CommandeGrosType::class,$commande);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $this->manager->persist($commande);
@@ -48,10 +48,10 @@ class CommandeUnitaireController extends AbstractController
             'commande'=>$commande,
             'commandes'=>$commandes,
             'form'=>$form->createView(),
-            ]);
+        ]);
     }
     /**
-     * @Route ("/Commandes/{id}",name="Admin.CommandeUnitarie.edit",methods="GET|POST")
+     * @Route ("/CommandesGros/{id}",name="Admin.CommandeGros.edit",methods="GET|POST")
      * @param $id
      * @param Request $request
      * @return Response
@@ -59,21 +59,21 @@ class CommandeUnitaireController extends AbstractController
     public function edit($id,Request $request)
     {
         $commande= $this->commande->find($id);
-        $form =$this->createForm(CommandeUnitaireType::class,$commande);
+        $form =$this->createForm(CommandeGrosType::class,$commande);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
             $this->manager->flush();
             $this->addFlash('success','Commande modifiée avec succès');
-            return $this->redirectToRoute('Admin.CommandeUnitaire.index');
+            return $this->redirectToRoute('Admin.CommandeGros.index');
         }
-        return $this->render("Dashboard/CommandeUnitaire/EditerCommande.html.twig",[
+        return $this->render("Dashboard/CommandeGros/EditerCommande.html.twig",[
             'commande'=>$commande,
             'form'=>$form->createView(),
         ]);
     }
     /**
-     * @Route ("/Commandes/delete/{id}",name="Admin.CommandeUnitaire.delete",methods="DELETE")
+     * @Route ("/CommandesGros/delete/{id}",name="Admin.CommandeGros.delete",methods="DELETE")
      * @param $id
      * @param Request $request
      * @return RedirectResponse
@@ -84,41 +84,41 @@ class CommandeUnitaireController extends AbstractController
         $this->manager->flush();
         $this->addFlash('success','Commande supprimée avec succès');
 
-        return $this->redirectToRoute('Admin.CommandeUnitaire.index');
+        return $this->redirectToRoute('Admin.CommandeGros.index');
     }
     /**
-     * @Route ("/CommandeList/new",name="Admin.CommandeUnitaire.newCommand")
+     * @Route ("/CommandeGrosList/new",name="Admin.CommandeGros.newCommand")
      * @param Request $request
      * @return Response
      */
     public function newCommand(Request $request):Response
     {
         $commandes = $this->commande->findAllNewCommande();
-        return $this->render('Dashboard/CommandeUnitaire/AdminNewOrder.html.twig',[
+        return $this->render('Dashboard/CommandeGros/AdminNewOrder.html.twig',[
             'commandes'=>$commandes,
         ]);
     }
     /**
-     * @Route ("/CommandeList/confirmed",name="Admin.CommandeUnitaire.confirmedCommand")
+     * @Route ("/CommandeGrosList/confirmed",name="Admin.CommandeGros.confirmedCommand")
      * @param Request $request
      * @return Response
      */
     public function confirmedCommand(Request $request):Response
     {
         $commandes = $this->commande->findAllConfirmedCommande();
-        return $this->render('Dashboard/CommandeUnitaire/AdminNewOrder.html.twig',[
+        return $this->render('Dashboard/CommandeGros/AdminNewOrder.html.twig',[
             'commandes'=>$commandes,
         ]);
     }
     /**
-     * @Route ("/CommandeList/sent",name="Admin.CommandeUnitaire.sentCommand")
+     * @Route ("/CommandeGrosList/sent",name="Admin.CommandeGros.sentCommand")
      * @param Request $request
      * @return Response
      */
     public function sentCommand(Request $request):Response
     {
         $commandes = $this->commande->findAllSentCommande();
-        return $this->render('Dashboard/CommandeUnitaire/AdminSentOrder.html.twig',[
+        return $this->render('Dashboard/CommandeGros/AdminSentOrder.html.twig',[
             'commandes'=>$commandes,
         ]);
     }

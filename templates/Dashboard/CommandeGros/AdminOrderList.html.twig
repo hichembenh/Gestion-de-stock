@@ -54,17 +54,19 @@
                                     {% for commande in commandes %}
                                         <tr>
                                             <th>
-                                                <a href="{{path("Admin.CommandeUnitarie.edit",{id: commande.id})}}" class="btn btn-secondary">Editer</a>
-                                                <form method="post" action="{{ path('Admin.CommandeUnitaire.delete',{id: commande.id}) }}" style="display: inline-block" onsubmit="return confirm('Sur??')">
+                                                <a href="{{path("Admin.CommandeGros.edit",{id: commande.id})}}" class="btn btn-secondary">Editer</a>
+                                                <form method="post" action="{{ path('Admin.CommandeGros.delete',{id: commande.id}) }}" style="display: inline-block" onsubmit="return confirm('Sur??')">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <input type="hidden" name="_token" value="{{ csrf_token('delete'~ commande.id) }}">
                                                     <button class="btn btn-danger">Supprimer</button>
                                                 </form>
                                             </th>
                                             <th>{{ commande.ref }}</th>
-                                            <th>{{ commande.nomClient }}</th>
+                                            <th>{{ commande.nomProp }}</th>
                                             <th>{{ commande.adresse }}</th>
-                                            <th>{{ commande.prix }}</th>
+                                            <th>{{ commande.montantTotal }}</th>
+                                            <th>{{ commande.mondat }}</th>
+                                            <th>{{ commande.restePayer }}</th>
                                             <th>{{ commande.numTel }}</th>
                                             <th>{{ commande.dateCreation |date("d/m/Y h:m") }}</th>
                                             <th>{{ commande.etat }}</th>

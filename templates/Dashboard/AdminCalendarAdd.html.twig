@@ -1,0 +1,110 @@
+{% extends 'Dashboard/base.html.twig' %}
+{% block title %} Fiche Commande {% endblock %}
+{% block body %}
+    <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        {% include'./Dashboard/navbar.html.twig' %}
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Ajouter un evenement</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="{{ path('admin') }}">Home</a></li>
+                                <li class="breadcrumb-item active">Ajouter un evenement</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            {% for message in app.flashes('success') %}
+                                <div class="alert alert-success">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Ajouter une Commande</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    {{ form_start(form) }}
+                                    {{ form_rest(form) }}
+                                    <button class="btn btn-success">Ajouter</button>
+                                    {{ form_end(form) }}
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Liste des commande</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr bgcolor="#48d1cc">
+                                            <th>Titre</th>
+                                            <th>Date debut</th>
+                                            <th>Date fin</th>
+                                            <th>Description</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for event in events %}
+                                            <tr>
+                                                <th>{{ event.title }}</th>
+                                                <th>{{ event.start |date("d/m/Y h:m")}}</th>
+                                                <th>{{ event.end |date("d/m/Y h:m")}}</th>
+                                                <th>{{ event.description }}</th>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr bgcolor="#48d1cc">
+                                            <th>Titre</th>
+                                            <th>Date debut</th>
+                                            <th>Date fin</th>
+                                            <th>Description</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        {% include 'Dashboard/footer.html.twig' %}
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    </body>
+{% endblock %}

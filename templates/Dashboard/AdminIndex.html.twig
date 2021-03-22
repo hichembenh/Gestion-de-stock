@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'Dashboard/base.html.twig' %}
 {% block title %} welcome {% endblock %}
 
 {% block body %}
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
   <!-- Main Sidebar Container -->
-  {% include'navbar.html.twig' %}
+  {% include'Dashboard/navbar.html.twig' %}
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -155,7 +155,7 @@
                       <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
+                    <img class="direct-chat-img" src={{ asset("dist/img/user1-128x128.jpg") }} alt="message user image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       Is this template really for free? That's unbelievable!
@@ -171,7 +171,7 @@
                       <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
+                    <img class="direct-chat-img" src={{ asset("dist/img/user3-128x128.jpg") }} alt="message user image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       You better believe it!
@@ -607,7 +607,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-{% include 'footer.html.twig' %}
+{% include 'Dashboard/footer.html.twig' %}
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
