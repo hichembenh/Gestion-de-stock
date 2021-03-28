@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\CommandeUnitaire;
 use App\Form\CommandeUnitaireType;
 use App\Repository\CommandeUnitaireRepository;
+use App\Repository\ArticlesFiniRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -23,9 +24,15 @@ class CommandeUnitaireController extends AbstractController
      */
     private $manager;
 
-    public function __construct(CommandeUnitaireRepository $commande,EntityManagerInterface $manager)
+    /**
+     * @var ArticlesFiniRepository
+     */
+    private $article;
+
+    public function __construct(CommandeUnitaireRepository $commande, EntityManagerInterface $manager, ArticlesFiniRepository $article)
     {
-        $this->commande=$commande;
+        $this->commande = $commande;
+        $this->article = $article;
         $this->manager = $manager;
     }
 
@@ -33,22 +40,26 @@ class CommandeUnitaireController extends AbstractController
      * @return Response
      * @Route ("/Commandes",name="Admin.CommandeUnitaire.index")
      */
-    public function index(Request $request):Response
+    public function index(Request $request): Response
     {
         $commande = new CommandeUnitaire();
-        $form =$this->createForm(CommandeUnitaireType::class,$commande);
+        $form = $this->createForm(CommandeUnitaireType::class, $commande);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $stock = $this->article->findOneBy(
+                ['ref' => 'commande.ref']
+            );
             $this->manager->persist($commande);
             $this->manager->flush();
-            $this->addFlash('success','Commande ajoutée avec succès');
+            $this->addFlash('success', 'Commande ajoutée avec succès');
         }
         $commandes = $this->commande->findAll();
-        return $this->render('Dashboard/CommandeUnitaire/AdminOrder.html.twig',[
-            'commande'=>$commande,
-            'commandes'=>$commandes,
-            'form'=>$form->createView(),
-            ]);
+        return $this->render('Dashboard/CommandeUnitaire/AdminOrder.html.twig', [
+            'commande' => $commande,
+            'commandes' => $commandes,
+            'form' => $form->createView(),
+        ]);
     }
     /**
      * @Route ("/Commandes/{id}",name="Admin.CommandeUnitarie.edit",methods="GET|POST")
@@ -56,20 +67,19 @@ class CommandeUnitaireController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function edit($id,Request $request)
+    public function edit($id, Request $request)
     {
-        $commande= $this->commande->find($id);
-        $form =$this->createForm(CommandeUnitaireType::class,$commande);
+        $commande = $this->commande->find($id);
+        $form = $this->createForm(CommandeUnitaireType::class, $commande);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->manager->flush();
-            $this->addFlash('success','Commande modifiée avec succès');
+            $this->addFlash('success', 'Commande modifiée avec succès');
             return $this->redirectToRoute('Admin.CommandeUnitaire.index');
         }
-        return $this->render("Dashboard/CommandeUnitaire/EditerCommande.html.twig",[
-            'commande'=>$commande,
-            'form'=>$form->createView(),
+        return $this->render("Dashboard/CommandeUnitaire/EditerCommande.html.twig", [
+            'commande' => $commande,
+            'form' => $form->createView(),
         ]);
     }
     /**
@@ -78,11 +88,12 @@ class CommandeUnitaireController extends AbstractController
      * @param Request $request
      * @return RedirectResponse
      */
-    public function delete($id,Request $request){
-        $commande= $this->commande->find($id);
+    public function delete($id, Request $request)
+    {
+        $commande = $this->commande->find($id);
         $this->manager->remove($commande);
         $this->manager->flush();
-        $this->addFlash('success','Commande supprimée avec succès');
+        $this->addFlash('success', 'Commande supprimée avec succès');
 
         return $this->redirectToRoute('Admin.CommandeUnitaire.index');
     }
@@ -91,11 +102,11 @@ class CommandeUnitaireController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function newCommand(Request $request):Response
+    public function newCommand(Request $request): Response
     {
         $commandes = $this->commande->findAllNewCommande();
-        return $this->render('Dashboard/CommandeUnitaire/AdminNewOrder.html.twig',[
-            'commandes'=>$commandes,
+        return $this->render('Dashboard/CommandeUnitaire/AdminNewOrder.html.twig', [
+            'commandes' => $commandes,
         ]);
     }
     /**
@@ -103,11 +114,11 @@ class CommandeUnitaireController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function confirmedCommand(Request $request):Response
+    public function confirmedCommand(Request $request): Response
     {
         $commandes = $this->commande->findAllConfirmedCommande();
-        return $this->render('Dashboard/CommandeUnitaire/AdminNewOrder.html.twig',[
-            'commandes'=>$commandes,
+        return $this->render('Dashboard/CommandeUnitaire/AdminNewOrder.html.twig', [
+            'commandes' => $commandes,
         ]);
     }
     /**
@@ -115,11 +126,11 @@ class CommandeUnitaireController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function sentCommand(Request $request):Response
+    public function sentCommand(Request $request): Response
     {
         $commandes = $this->commande->findAllSentCommande();
-        return $this->render('Dashboard/CommandeUnitaire/AdminSentOrder.html.twig',[
-            'commandes'=>$commandes,
+        return $this->render('Dashboard/CommandeUnitaire/AdminSentOrder.html.twig', [
+            'commandes' => $commandes,
         ]);
     }
 }

@@ -1,172 +1,207 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="{{ path('admin') }}" class="brand-link">
-        <span class="brand-text font-weight-light">LHtex</span>
-    </a>
+<aside
+	class="main-sidebar sidebar-dark-primary elevation-4">
+	<!-- Brand Logo -->
+	<a href="{{ path('admin') }}" class="brand-link">
+		<span class="brand-text font-weight-light">LHtex</span>
+	</a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="{{ path('admin') }}" class="d-block">Heythem</a>
-            </div>
-        </div>
+	<!-- Sidebar -->
+	<div
+		class="sidebar">
+		<!-- Sidebar user panel (optional) -->
+		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+			<div class="image">
+				<img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+			</div>
+			<div class="info">
+				<a href="{{ path('admin') }}" class="d-block">Heythem</a>
+			</div>
+		</div>
 
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+		<!-- SidebarSearch Form -->
+		<div class="form-inline">
+			<div class="input-group" data-widget="sidebar-search">
+				<input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+				<div class="input-group-append">
+					<button class="btn btn-sidebar">
+						<i class="fas fa-search fa-fw"></i>
+					</button>
+				</div>
+			</div>
+		</div>
 
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="{{ path('admin') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Commande Unitaire
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ path('Admin.CommandeUnitaire.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Traitement des commandes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path('Admin.CommandeUnitaire.newCommand') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Nouvelles commandes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path('Admin.CommandeUnitaire.confirmedCommand') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Commandes confirmées</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path("Admin.CommandeUnitaire.sentCommand") }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Commandes envoyées</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Commandes personnalisées
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ path('Admin.CommandeGros.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Traitement des commandes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path('Admin.CommandeGros.newCommand') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Nouvelles commandes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path('Admin.CommandeGros.confirmedCommand') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Commandes confirmées</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path("Admin.CommandeGros.sentCommand") }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Commandes envoyées</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-address-book"></i>
-                        <p>
-                            Personnels
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Traitement des personnels</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path('Admin.User.new') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p> Ajouter un personnel</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-calendar-day">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-day" viewBox="0 0 16 16">
-                                <path d="M4.684 11.523v-2.3h2.261v-.61H4.684V6.801h2.464v-.61H4v5.332h.684zm3.296 0h.676V8.98c0-.554.227-1.007.953-1.007.125 0 .258.004.329.015v-.613a1.806 1.806 0 0 0-.254-.02c-.582 0-.891.32-1.012.567h-.02v-.504H7.98v4.105zm2.805-5.093c0 .238.192.425.43.425a.428.428 0 1 0 0-.855.426.426 0 0 0-.43.43zm.094 5.093h.672V7.418h-.672v4.105z"/>
-                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                            </svg>
-                        </i>
-                        <p>
-                            Calendrier
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ path('Admin.Calendar') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ma calendrier</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path('Admin.Calendar.New') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Mes evenements</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+		<!-- Sidebar Menu -->
+		<nav class="mt-2">
+			<ul
+				class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+				<!-- Add icons to the links using the .nav-icon class
+																				                     with font-awesome or any other icon font library -->
+				<li class="nav-item">
+					<a href="{{ path('admin') }}" class="nav-link">
+						<i class="nav-icon fas fa-tachometer-alt"></i>
+						<p>
+							Dashboard
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-edit"></i>
+						<p>
+							Commande Unitaire
+							<i class="fas fa-angle-left right"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="{{ path('Admin.CommandeUnitaire.index') }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Traitement des commandes</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('Admin.CommandeUnitaire.newCommand') }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Nouvelles commandes</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('Admin.CommandeUnitaire.confirmedCommand') }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Commandes confirmées</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path("Admin.CommandeUnitaire.sentCommand") }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Commandes envoyées</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-edit"></i>
+						<p>
+							Commandes personnalisées
+							<i class="fas fa-angle-left right"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="{{ path('Admin.CommandeGros.index') }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Traitement des commandes</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('Admin.CommandeGros.newCommand') }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Nouvelles commandes</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('Admin.CommandeGros.confirmedCommand') }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Commandes confirmées</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path("Admin.CommandeGros.sentCommand") }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Commandes envoyées</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="fas fa-address-book"></i>
+						<p>
+							Personnels
+							<i class="fas fa-angle-left right"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Traitement des personnels</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('Admin.User.new') }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Ajouter un personnel</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="bi bi-calendar-day">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-day" viewbox="0 0 16 16">
+								<path d="M4.684 11.523v-2.3h2.261v-.61H4.684V6.801h2.464v-.61H4v5.332h.684zm3.296 0h.676V8.98c0-.554.227-1.007.953-1.007.125 0 .258.004.329.015v-.613a1.806 1.806 0 0 0-.254-.02c-.582 0-.891.32-1.012.567h-.02v-.504H7.98v4.105zm2.805-5.093c0 .238.192.425.43.425a.428.428 0 1 0 0-.855.426.426 0 0 0-.43.43zm.094 5.093h.672V7.418h-.672v4.105z"/>
+								<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+							</svg>
+						</i>
+						<p>
+							Calendrier
+							<i class="fas fa-angle-left right"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="{{ path('Admin.Calendar') }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Ma calendrier</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('Admin.Calendar.New') }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Mes evenements</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="fas fa-layer-group"></i>
+						<p>
+							Stock
+							<i class="fas fa-angle-left right"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="{{path('Stock.Articles')}}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Articles</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Materiels</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Fournitures</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
 
-        </nav>
-        <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
+		</nav>
+		<!-- /.sidebar-menu -->
+	</div>
+	<!-- /.sidebar -->
 </aside>
