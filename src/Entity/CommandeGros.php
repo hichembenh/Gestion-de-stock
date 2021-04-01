@@ -70,6 +70,11 @@ class CommandeGros
      */
     private $adresse;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true,options={"default":null})
+     */
+    private $numColis;
+
     public function __construct(){
         $this->dateCreation=new \DateTime();
         $this->numColis=null;
@@ -185,6 +190,18 @@ class CommandeGros
     public function setAdresse(string $adresse): self
     {
         $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getNumColis(): ?string
+    {
+        return $this->numColis;
+    }
+
+    public function setNumColis(?string $numColis): self
+    {
+        $this->numColis = $numColis;
 
         return $this;
     }

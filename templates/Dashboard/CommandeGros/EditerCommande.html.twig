@@ -34,14 +34,49 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                                <h3 class="card-title">Modifier la commande</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                {{ form_start(form) }}
-                                    {{ form_rest(form) }}
-                                <button class="btn btn-success">Modifier</button>
-                                {{ form_end(form) }}
+                                <form>
+                                    <div class="form-group">
+                                        <div class="form-group col-md-6">
+                                            <label>Reference</label>
+                                            {{ form_widget(form.ref) }}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Nom client</label>
+                                            {{ form_widget(form.nomProp) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+
+                                        <label>Address</label>
+                                        {{ form_widget(form.adresse) }}
+
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-group col-md-6">
+                                            <label>Numero du mondat</label>
+                                            {{ form_widget(form.mondat) }}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Montant totale</label>
+                                            {{ form_widget(form.montantTotal) }}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Reste a payer</label>
+                                            {{ form_widget(form.restePayer) }}
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Etat</label>
+                                                {{ form_widget(form.etat) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-success">Modifier</button>
+                                </form>
                             </div>
                             <!-- /.card-body -->
                         </div>

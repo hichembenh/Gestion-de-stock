@@ -65,7 +65,9 @@
                                             <th>Ref</th>
                                             <th>Nom du client</th>
                                             <th>Adresse du client</th>
-                                            <th>Montant de la commande</th>
+                                            <th>Montant totale de la commande</th>
+                                            <th>Mondat</th>
+                                            <th>Reste a payer</th>
                                             <th>Numero telephone du client</th>
                                             <th>Date de creation</th>
                                             <th>Etat</th>
@@ -76,8 +78,8 @@
                                         {% for commande in commandes %}
                                             <tr>
                                                 <th>
-                                                    <a href="{{path("Admin.CommandeUnitarie.edit",{id: commande.id})}}" class="btn btn-secondary">Editer</a>
-                                                    <form method="post" action="{{ path('Admin.CommandeUnitaire.delete',{id: commande.id})}}" class="js-delete" style="display: inline-block" onsubmit="return confirm('Sur??')">
+                                                    <a href="{{path("Admin.CommandeGros.edit",{id: commande.id})}}" class="btn btn-secondary">Editer</a>
+                                                    <form method="post" action="{{ path('Admin.CommandeGros.delete',{id: commande.id})}}" class="js-delete" style="display: inline-block" onsubmit="return confirm('Sur??')">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token" value="{{ csrf_token('delete'~ commande.id) }}">
                                                         <button class="btn btn-danger">Supprimer</button>
@@ -92,7 +94,7 @@
                                                         {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
                                                         {% if commande.etat==3 %} bgcolor ="green"{% endif %}
                                                         {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
-                                                    {{ commande.nomClient }}</th>
+                                                    {{ commande.nomProp }}</th>
                                                 <th {% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
                                                         {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
                                                         {% if commande.etat==3 %} bgcolor ="green"{% endif %}
@@ -102,7 +104,17 @@
                                                         {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
                                                         {% if commande.etat==3 %} bgcolor ="green"{% endif %}
                                                         {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
-                                                    {{ commande.prix }}</th>
+                                                    {{ commande.montantTotal }}</th>
+                                                <th{% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
+                                                        {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
+                                                        {% if commande.etat==3 %} bgcolor ="green"{% endif %}
+                                                        {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
+                                                    {{ commande.mondat }}</th>
+                                                <th{% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
+                                                        {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
+                                                        {% if commande.etat==3 %} bgcolor ="green"{% endif %}
+                                                        {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
+                                                    {{ commande.restePayer }}</th>
                                                 <th{% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
                                                         {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
                                                         {% if commande.etat==3 %} bgcolor ="green"{% endif %}
@@ -118,11 +130,7 @@
                                                         {% if commande.etat==3 %} bgcolor ="green"{% endif %}
                                                         {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
                                                     {{ commande.etat }}</th>
-                                                <th{% if commande.etat==1 %} bgcolor ="#7fffd4" {% endif %}
-                                                        {% if commande.etat==2 %} bgcolor ="yellow"{% endif %}
-                                                        {% if commande.etat==3 %} bgcolor ="green"{% endif %}
-                                                        {% if commande.etat==4 %} bgcolor ="#8b0000"{% endif %}>
-                                                    {{ commande.numColis }}</th>
+
                                             </tr>
                                         {% endfor %}
                                         </tbody>

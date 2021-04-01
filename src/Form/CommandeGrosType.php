@@ -23,6 +23,7 @@ class CommandeGrosType extends AbstractType
             ->add('restePayer',IntegerType::class)
             ->add('nomProp',TextType::class)
             ->add('numTel',TelType::class)
+            ->add('adresse',TextType::class)
             ->add('etat',ChoiceType::class,[
             'choices'=> $this->getChoices(),
             'required' => false

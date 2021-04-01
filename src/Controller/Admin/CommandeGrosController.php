@@ -44,7 +44,7 @@ class CommandeGrosController extends AbstractController
             $this->addFlash('success','Commande ajoutée avec succès');
         }
         $commandes = $this->commande->findAll();
-        return $this->render('Dashboard/CommandeUnitaire/AdminOrder.html.twig',[
+        return $this->render('Dashboard/CommandeGros/AdminOrder.html.twig',[
             'commande'=>$commande,
             'commandes'=>$commandes,
             'form'=>$form->createView(),
@@ -67,7 +67,7 @@ class CommandeGrosController extends AbstractController
             $this->addFlash('success','Commande modifiée avec succès');
             return $this->redirectToRoute('Admin.CommandeGros.index');
         }
-        return $this->render("Dashboard/CommandeGros/EditerCommande.html.twig",[
+        return $this->render('Dashboard/CommandeGros/EditerCommande.html.twig',[
             'commande'=>$commande,
             'form'=>$form->createView(),
         ]);

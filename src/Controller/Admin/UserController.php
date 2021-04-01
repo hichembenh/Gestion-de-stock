@@ -48,7 +48,6 @@ class UserController extends AbstractController
             $this->addFlash('success','Utilisateur ajoutée avec succès');
         }
         return $this->render('Dashboard/AdminNewUser.html.twig',[
-            'user'=>$user,
             'form'=>$form->createView()
         ]);
     }

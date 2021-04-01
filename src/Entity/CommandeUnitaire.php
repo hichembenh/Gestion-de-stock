@@ -5,12 +5,15 @@ namespace App\Entity;
 use App\Repository\CommandeUnitaireRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\CommandeGrosRepository;
+use App\Entity\CommandeGros;
 
 /**
  * @ORM\Entity(repositoryClass=CommandeUnitaireRepository::class)
  */
 class CommandeUnitaire
 {
+
     const ETAT = [
         0=>'nouvelle',
         1=>'confirmée',
@@ -69,10 +72,12 @@ class CommandeUnitaire
      */
     private $etat;
 
+
     public function __construct(){
         $this->dateCreation=new \DateTime();
         $this->numColis=null;
     }
+
 
     public function getId(): ?int
     {

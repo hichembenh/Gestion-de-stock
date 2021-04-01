@@ -11,6 +11,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ArticlesFini
 {
+    const ETAT=[
+        1=>"Mawjoud",
+        2=>"Repture"
+    ];
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -112,5 +116,9 @@ class ArticlesFini
         $this->etat = $etat;
 
         return $this;
+    }
+
+    public function getChoices(){
+
     }
 }

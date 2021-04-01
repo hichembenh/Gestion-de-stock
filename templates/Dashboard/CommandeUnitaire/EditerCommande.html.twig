@@ -39,7 +39,17 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 {{ form_start(form) }}
-                                    {{ form_rest(form) }}
+                                <div class="row">
+                                    <div class="col">
+                                        {{ form_row(form.ref) }}
+                                    </div>
+                                    <div class="col" id="some-custom-id">
+                                        {{ form_row(form.nomClient) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    
+                                </div>
                                 <button class="btn btn-success">Modifier</button>
                                 {{ form_end(form) }}
                             </div>
