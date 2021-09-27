@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeUnitaireRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\CommandeGrosRepository;
@@ -72,10 +74,16 @@ class CommandeUnitaire
      */
     private $etat;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ArticlesFini::class, inversedBy="commandeUnitaires")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $famille;
 
     public function __construct(){
         $this->dateCreation=new \DateTime();
         $this->numColis=null;
+
     }
 
 
@@ -179,4 +187,17 @@ class CommandeUnitaire
 
         return $this;
     }
+
+    public function getFamille(): ?ArticlesFini
+    {
+        return $this->famille;
+    }
+
+    public function setFamille(?ArticlesFini $famille): self
+    {
+        $this->famille = $famille;
+
+        return $this;
+    }
+
 }

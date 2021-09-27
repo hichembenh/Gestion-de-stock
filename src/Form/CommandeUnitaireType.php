@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\CommandeUnitaire;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -32,6 +34,13 @@ class CommandeUnitaireType extends AbstractType
                 'choices'=> $this->getChoices(),
                 'required' => false
             ])
+            ->add('famille')
+            ->add('articleCaracts' , EntityType::class , array(
+                'class' => 'App:ArticleCaract',
+                'choice_label' => 'taille',
+                'expanded' => true,
+                'multiple' => true,
+            ))
         ;
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $product = $event->getData();

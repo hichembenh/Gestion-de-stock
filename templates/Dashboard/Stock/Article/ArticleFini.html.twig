@@ -52,6 +52,32 @@
 							</div>
 							<!-- /.card-body -->
 						</div>
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">Liste des articles</h3>
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body">
+								<table class="table table-bordered table-striped">
+									<tbody>
+									<div class="row">
+									{% for article in articles %}
+										<div class="card" style="width: 18rem;">
+											<img class="card-img-top" src="{{ asset('/uploads/'~article.image) }}" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">{{ article.ref }}</h5>
+												<p class="card-text">{{ article.description }}</p>
+												<a href="#" class="btn btn-primary">Modifier</a>
+											</div>
+										</div>
+
+									{% endfor %}
+									</div>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.card-body -->
+						</div>
 					</div>
 					<!-- /.col -->
 				</div>
@@ -60,5 +86,6 @@
 			<!-- /.container-fluid -->
 		</section>
 		<!-- /.content -->
+
 	</div>
 {% endblock %}
