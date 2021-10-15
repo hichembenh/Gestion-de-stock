@@ -3784,7 +3784,7 @@ module.exports = function (it) {
 	            // Shortcut
 	            var ciphertextWords = ciphertext.words;
 
-	            // Test for salt
+	            // GestionStock for salt
 	            if (ciphertextWords[0] == 0x53616c74 && ciphertextWords[1] == 0x65645f5f) {
 	                // Extract salt
 	                var salt = WordArray.create(ciphertextWords.slice(2, 4));
@@ -10819,7 +10819,7 @@ WritableState.prototype.getBuffer = function getBuffer() {
   } catch (_) {}
 })();
 
-// Test _writableState for inheritance to account for Duplex streams,
+// GestionStock _writableState for inheritance to account for Duplex streams,
 // whose prototype chain only points to Readable.
 var realHasInstance;
 if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.prototype[Symbol.hasInstance] === 'function') {
@@ -49201,14 +49201,14 @@ function initialReordering(font, glyphs, plan) {
       // as well as below the base glyph. The feature 'below-base
       // form' will be applied to all such occurrences of Ra as well."
       //
-      // Test case: U+0924,U+094D,U+0930,U+094d,U+0915
+      // GestionStock case: U+0924,U+094D,U+0930,U+094d,U+0915
       // with Sanskrit 2003 font.
       //
       // However, note that Ra,Halant,ZWJ is the correct way to
       // request eyelash form of Ra, so we wouldbn't inhibit it
       // in that sequence.
       //
-      // Test case: U+0924,U+094D,U+0930,U+094d,U+200D,U+0915
+      // GestionStock case: U+0924,U+094D,U+0930,U+094d,U+200D,U+0915
       for (var _i17 = start; _i17 + 1 < base; _i17++) {
         if (glyphs[_i17].shaperInfo.category === CATEGORIES.Ra && glyphs[_i17 + 1].shaperInfo.category === CATEGORIES.H && (_i17 + 1 === base || glyphs[_i17 + 2].shaperInfo.category === CATEGORIES.ZWJ)) {
           glyphs[_i17].features.blwf = true;

@@ -1039,12 +1039,12 @@ $.validator.addMethod( "nifES", function( value, element ) {
 		return false;
 	}
 
-	// Test NIF
+	// GestionStock NIF
 	if ( /^[0-9]{8}[A-Z]{1}$/.test( value ) ) {
 		return ( "TRWAGMYFPDXBNJZSQVHLCKE".charAt( value.substring( 8, 0 ) % 23 ) === value.charAt( 8 ) );
 	}
 
-	// Test specials NIF (starts with K, L or M)
+	// GestionStock specials NIF (starts with K, L or M)
 	if ( /^[KLM]{1}/.test( value ) ) {
 		return ( value[ 8 ] === "TRWAGMYFPDXBNJZSQVHLCKE".charAt( value.substring( 8, 1 ) % 23 ) );
 	}

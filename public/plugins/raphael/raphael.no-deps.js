@@ -5270,7 +5270,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      - stretch (string) #optional font stretch
      = (object) the font object
      > Usage
-     | paper.print(100, 100, "Test string", paper.getFont("Times", 800), 30);
+     | paper.print(100, 100, "GestionStock string", paper.getFont("Times", 800), 30);
     \*/
     paperproto.getFont = function (family, weight, style, stretch) {
         stretch = stretch || "normal";
